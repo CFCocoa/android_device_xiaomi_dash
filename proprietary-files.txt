@@ -1,0 +1,50 @@
+# Stock inputs for vendor/xiaomi/dash, extracted by extract-files.sh.
+# Pinned to the global fastboot ROM OS3.0.301.0.WPLMIXM. These files are
+# byte-identical in the CN ROM OS3.0.304.0.WPLCNXM except ImsService.apk,
+# which has the same code but fewer translations there.
+#
+# Format: <source>[:<destination>]|<sha1>
+#   <source>      <image>/<path>, where <image> is one of
+#                   vendor_boot       vendor_boot.img sections (only "dtb")
+#                   vendor_ramdisk00  first vendor_boot ramdisk fragment
+#                   odm, system_ext   erofs partitions inside super.img
+#   <destination> path inside vendor/xiaomi/dash (default: proprietary/<source>)
+
+# Kernel inputs: vendor_boot dtb section, copied unchanged (BOARD_PREBUILT_DTBIMAGE_DIR)
+vendor_boot/dtb:kernel-inputs/mt6991.dtb|68e6be054c7cd7ddf509b806c7fe463fa4e59cb1
+
+# Kernel inputs: first-stage ramdisk
+vendor_ramdisk00/first_stage_ramdisk/fstab.mt6991:kernel-inputs/platform/first_stage_ramdisk/fstab.mt6991|925eeaf37f30df3a3ff822fa7d549b47c5c638b1
+vendor_ramdisk00/lib/modules/modules.load.recovery:kernel-inputs/platform/lib/modules/modules.load.recovery|0e9b80200db8e95994dbc64aaff388ad1baa7fba
+
+# Kernel inputs: MTK UFS boot control for recovery
+vendor_ramdisk00/system/bin/hw/android.hardware.boot-service.mtk_recovery:kernel-inputs/recovery-mtk/system/bin/hw/android.hardware.boot-service.mtk_recovery|ca2c1625c8d161a4b181314381a192d656192652
+vendor_ramdisk00/system/bin/mtk_plpath_utils:kernel-inputs/recovery-mtk/system/bin/mtk_plpath_utils|e06145dc6a37e423830fe1119e9567dcb46e49d4
+vendor_ramdisk00/system/lib64/libmtk_bsg.so:kernel-inputs/recovery-mtk/system/lib64/libmtk_bsg.so|0086089ac37ec417827e5fedda2740f27f77509b
+vendor_ramdisk00/system/etc/vintf/manifest/android.hardware.boot-service.mtk.xml:kernel-inputs/recovery-mtk/system/etc/vintf/manifest/android.hardware.boot-service.mtk.xml|438c06536e76bfb03dda9c3dacfaa9f24638e574
+
+# Recovery touch
+odm/bin/touch_report_debug:recovery-touch/system/bin/touch_report_debug|b3da1e487b667c1ec09f30b36a795f311a6ad2da
+odm/lib64/libtensorflowlite_touch_c.so:recovery-touch/ram/lib64/libtensorflowlite_touch_c.so|a093177f077a3ce169684909a9171ff3da457c90
+odm/lib64/libtouchreport.so:recovery-touch/ram/lib64/libtouchreport.so|6a5491a9706d95278410e61d8d0f2a6c085541b8
+odm/lib64/libtouchreport_alg.so:recovery-touch/ram/lib64/libtouchreport_alg.so|2a66e360181c041214a33e2cd580f4183a883fac
+odm/lib64/libtouchreport_hal.so:recovery-touch/ram/lib64/libtouchreport_hal.so|37864410feb9528ff2b728e54f888ca339a2e585
+odm/lib64/libtouchreport_sensor.so:recovery-touch/ram/lib64/libtouchreport_sensor.so|0e4fd34b7fa1b903f59e442fc700f6507512710c
+odm/firmware/film_model.tflite:recovery-touch/ram/firmware/film_model.tflite|c1f2a913191219deb04aa5a9f95465a1b5923a17
+odm/firmware/novatek_nt38771_p10u_fw_csot.bin:recovery-touch/ram/firmware/novatek_nt38771_p10u_fw_csot.bin|a459aa45785a5b6bdb1d9c97010f3bc11e37496a
+odm/firmware/novatek_nt38771_p10u_fw_tm.bin:recovery-touch/ram/firmware/novatek_nt38771_p10u_fw_tm.bin|89e88224641bd3f465af902ba12bed289bd2b134
+odm/firmware/p10u_nova_csot_thp_config.ini:recovery-touch/ram/firmware/p10u_nova_csot_thp_config.ini|ed002470e34204505ba20cf4a8d991f3363e46bf
+odm/firmware/p10u_nova_tm_thp_config.ini:recovery-touch/ram/firmware/p10u_nova_tm_thp_config.ini|e6695030a626590383d34608f47d1dc9fd0093bf
+odm/firmware/smooth.tflite:recovery-touch/ram/firmware/smooth.tflite|e5cdf7843af4d2cc5748071bbbc427e04f64db7f
+odm/firmware/water_check.tflite:recovery-touch/ram/firmware/water_check.tflite|738fb7b18cb93d13cbd9c347e909816a8565c08c
+
+# IMS (Soong modules in vendor/xiaomi/dash/Android.bp)
+system_ext/priv-app/ImsService/ImsService.apk|d3a4a0d8401bd144da287a998d63954e4969d014
+system_ext/priv-app/MtkGbaService/MtkGbaService.apk|48746323e3f349dda983a3949cc8ff551f654060
+system_ext/framework/mediatek-common.jar|d8452bed924f2835d7b6917138f85a8f96faab66
+system_ext/framework/mediatek-ims-base.jar|379037af7466fd3a25afd95cedecdfe005afe839
+system_ext/lib64/libmtk_vt_wrapper.so|bc3ae59851d81447bcee4795548a9b0b463c4c3c
+system_ext/lib64/libvcodec_cap.so|ff208ca4d2ec97d742901cbae62eb50879af5a6c
+system_ext/lib64/libvcodec_capenc.so|013f0131a424f8c2fc3815b02e466bc03a197324
+system_ext/lib64/vendor.mediatek.hardware.videotelephony-V1-ndk.so|8b13966bdf703d2eae99d4f65a2e77fbd939064c
+system_ext/lib64/vendor.mediatek.hardware.videotelephony@1.0.so|01b68c7597d585ec39441628f66b02b3b091db99
